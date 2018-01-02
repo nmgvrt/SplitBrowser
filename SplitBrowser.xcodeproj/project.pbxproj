@@ -8,19 +8,45 @@
 
 /* Begin PBXBuildFile section */
 		427AA4181FFB186700782E1A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427AA4171FFB186700782E1A /* AppDelegate.swift */; };
-		427AA41A1FFB186700782E1A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427AA4191FFB186700782E1A /* ViewController.swift */; };
 		427AA41C1FFB186700782E1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 427AA41B1FFB186700782E1A /* Assets.xcassets */; };
-		427AA41F1FFB186800782E1A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 427AA41D1FFB186800782E1A /* Main.storyboard */; };
+		427AA42B1FFB1BDA00782E1A /* BrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427AA42A1FFB1BDA00782E1A /* BrowserViewController.swift */; };
+		427AA42D1FFB1C7E00782E1A /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427AA42C1FFB1C7E00782E1A /* SettingViewController.swift */; };
+		427AA4321FFB1EBD00782E1A /* NumberFormModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427AA4311FFB1EBD00782E1A /* NumberFormModel.swift */; };
+		427AA4341FFB1FB000782E1A /* NumberForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427AA4331FFB1FB000782E1A /* NumberForm.swift */; };
+		427AA4361FFB204A00782E1A /* AbstractCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427AA4351FFB204A00782E1A /* AbstractCustomView.swift */; };
+		427AA4381FFB271200782E1A /* SizeForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427AA4371FFB271200782E1A /* SizeForm.swift */; };
+		427AA43A1FFB2D0C00782E1A /* NumberForm.xib in Resources */ = {isa = PBXBuildFile; fileRef = 427AA4391FFB2D0C00782E1A /* NumberForm.xib */; };
+		427AA43C1FFB2D4F00782E1A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 427AA43B1FFB2D4F00782E1A /* Main.storyboard */; };
+		427AA43F1FFB2EBD00782E1A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427AA43E1FFB2EBD00782E1A /* WebKit.framework */; };
+		427AA4411FFB304F00782E1A /* CustomPopUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427AA4401FFB304F00782E1A /* CustomPopUpButton.swift */; };
+		427AA4431FFB358300782E1A /* Preset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427AA4421FFB358300782E1A /* Preset.swift */; };
+		427AA4451FFB5A1A00782E1A /* PreviewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 427AA4441FFB5A1A00782E1A /* PreviewItem.xib */; };
+		427AA4471FFB5A5400782E1A /* PreviewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427AA4461FFB5A5400782E1A /* PreviewItem.swift */; };
+		427AA4491FFB834900782E1A /* BrowserItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 427AA4481FFB834900782E1A /* BrowserItem.xib */; };
+		427AA44B1FFB838A00782E1A /* BrowserItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427AA44A1FFB838A00782E1A /* BrowserItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		427AA4141FFB186700782E1A /* SplitBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SplitBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		427AA4171FFB186700782E1A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		427AA4191FFB186700782E1A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		427AA41B1FFB186700782E1A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		427AA41E1FFB186800782E1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		427AA4201FFB186800782E1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		427AA4211FFB186800782E1A /* SplitBrowser.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SplitBrowser.entitlements; sourceTree = "<group>"; };
+		427AA42A1FFB1BDA00782E1A /* BrowserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserViewController.swift; sourceTree = "<group>"; };
+		427AA42C1FFB1C7E00782E1A /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		427AA4311FFB1EBD00782E1A /* NumberFormModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormModel.swift; sourceTree = "<group>"; };
+		427AA4331FFB1FB000782E1A /* NumberForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberForm.swift; sourceTree = "<group>"; };
+		427AA4351FFB204A00782E1A /* AbstractCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractCustomView.swift; sourceTree = "<group>"; };
+		427AA4371FFB271200782E1A /* SizeForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeForm.swift; sourceTree = "<group>"; };
+		427AA4391FFB2D0C00782E1A /* NumberForm.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NumberForm.xib; sourceTree = "<group>"; };
+		427AA43B1FFB2D4F00782E1A /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		427AA43E1FFB2EBD00782E1A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		427AA4401FFB304F00782E1A /* CustomPopUpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopUpButton.swift; sourceTree = "<group>"; };
+		427AA4421FFB358300782E1A /* Preset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preset.swift; sourceTree = "<group>"; };
+		427AA4441FFB5A1A00782E1A /* PreviewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreviewItem.xib; sourceTree = "<group>"; };
+		427AA4461FFB5A5400782E1A /* PreviewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewItem.swift; sourceTree = "<group>"; };
+		427AA4481FFB834900782E1A /* BrowserItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BrowserItem.xib; sourceTree = "<group>"; };
+		427AA44A1FFB838A00782E1A /* BrowserItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -28,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				427AA43F1FFB2EBD00782E1A /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -39,6 +66,7 @@
 			children = (
 				427AA4161FFB186700782E1A /* SplitBrowser */,
 				427AA4151FFB186700782E1A /* Products */,
+				427AA43D1FFB2EBD00782E1A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,13 +82,41 @@
 			isa = PBXGroup;
 			children = (
 				427AA4171FFB186700782E1A /* AppDelegate.swift */,
-				427AA4191FFB186700782E1A /* ViewController.swift */,
+				427AA42A1FFB1BDA00782E1A /* BrowserViewController.swift */,
+				427AA42C1FFB1C7E00782E1A /* SettingViewController.swift */,
+				427AA4421FFB358300782E1A /* Preset.swift */,
+				427AA42E1FFB1E4600782E1A /* CustomViews */,
 				427AA41B1FFB186700782E1A /* Assets.xcassets */,
-				427AA41D1FFB186800782E1A /* Main.storyboard */,
+				427AA43B1FFB2D4F00782E1A /* Main.storyboard */,
 				427AA4201FFB186800782E1A /* Info.plist */,
 				427AA4211FFB186800782E1A /* SplitBrowser.entitlements */,
 			);
 			path = SplitBrowser;
+			sourceTree = "<group>";
+		};
+		427AA42E1FFB1E4600782E1A /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				427AA4401FFB304F00782E1A /* CustomPopUpButton.swift */,
+				427AA4351FFB204A00782E1A /* AbstractCustomView.swift */,
+				427AA4331FFB1FB000782E1A /* NumberForm.swift */,
+				427AA4391FFB2D0C00782E1A /* NumberForm.xib */,
+				427AA4311FFB1EBD00782E1A /* NumberFormModel.swift */,
+				427AA4371FFB271200782E1A /* SizeForm.swift */,
+				427AA4461FFB5A5400782E1A /* PreviewItem.swift */,
+				427AA4441FFB5A1A00782E1A /* PreviewItem.xib */,
+				427AA44A1FFB838A00782E1A /* BrowserItem.swift */,
+				427AA4481FFB834900782E1A /* BrowserItem.xib */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		427AA43D1FFB2EBD00782E1A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				427AA43E1FFB2EBD00782E1A /* WebKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -122,8 +178,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				427AA43C1FFB2D4F00782E1A /* Main.storyboard in Resources */,
+				427AA4451FFB5A1A00782E1A /* PreviewItem.xib in Resources */,
+				427AA43A1FFB2D0C00782E1A /* NumberForm.xib in Resources */,
+				427AA4491FFB834900782E1A /* BrowserItem.xib in Resources */,
 				427AA41C1FFB186700782E1A /* Assets.xcassets in Resources */,
-				427AA41F1FFB186800782E1A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,23 +193,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				427AA41A1FFB186700782E1A /* ViewController.swift in Sources */,
 				427AA4181FFB186700782E1A /* AppDelegate.swift in Sources */,
+				427AA4471FFB5A5400782E1A /* PreviewItem.swift in Sources */,
+				427AA4361FFB204A00782E1A /* AbstractCustomView.swift in Sources */,
+				427AA4381FFB271200782E1A /* SizeForm.swift in Sources */,
+				427AA42B1FFB1BDA00782E1A /* BrowserViewController.swift in Sources */,
+				427AA4431FFB358300782E1A /* Preset.swift in Sources */,
+				427AA4341FFB1FB000782E1A /* NumberForm.swift in Sources */,
+				427AA44B1FFB838A00782E1A /* BrowserItem.swift in Sources */,
+				427AA4411FFB304F00782E1A /* CustomPopUpButton.swift in Sources */,
+				427AA4321FFB1EBD00782E1A /* NumberFormModel.swift in Sources */,
+				427AA42D1FFB1C7E00782E1A /* SettingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		427AA41D1FFB186800782E1A /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				427AA41E1FFB186800782E1A /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		427AA4221FFB186800782E1A /* Debug */ = {
@@ -263,7 +320,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = SplitBrowser/SplitBrowser.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 2KRGQ9LQDR;
@@ -279,7 +335,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = SplitBrowser/SplitBrowser.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 2KRGQ9LQDR;

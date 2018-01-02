@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <plugIn identifier="com.apple.WebKit2IBPlugin" version="13771"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="BrowserItem" customModule="SplitBrowser" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="c22-O7-iKe" id="hH9-MF-rbJ"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <wkWebView wantsLayer="YES" allowsBackForwardNavigationGestures="YES" allowsMagnification="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d6D-LE-9vx">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
+                    <wkWebViewConfiguration key="configuration" applicationNameForUserAgent="">
+                        <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" audio="YES" video="YES"/>
+                        <wkPreferences key="preferences"/>
+                    </wkWebViewConfiguration>
+                </wkWebView>
+                <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sQk-TP-Tip">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="26"/>
+                    <subviews>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vEq-u6-2fM">
+                            <rect key="frame" x="3" y="4" width="450" height="17"/>
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="1X8-GL-eJe">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="LPT-mk-dwR">
+                            <rect key="frame" x="459" y="5" width="16" height="16"/>
+                            <contentFilters>
+                                <ciFilter name="CIColorInvert">
+                                    <configuration>
+                                        <null key="inputImage"/>
+                                    </configuration>
+                                </ciFilter>
+                            </contentFilters>
+                        </progressIndicator>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="LPT-mk-dwR" secondAttribute="trailing" constant="5" id="4cA-e3-Qry"/>
+                        <constraint firstItem="vEq-u6-2fM" firstAttribute="top" secondItem="sQk-TP-Tip" secondAttribute="top" constant="5" id="B4S-92-Tw9"/>
+                        <constraint firstItem="vEq-u6-2fM" firstAttribute="centerY" secondItem="sQk-TP-Tip" secondAttribute="centerY" id="DU1-N3-z1T"/>
+                        <constraint firstItem="LPT-mk-dwR" firstAttribute="leading" secondItem="vEq-u6-2fM" secondAttribute="trailing" constant="8" symbolic="YES" id="NqO-1E-MGk"/>
+                        <constraint firstItem="vEq-u6-2fM" firstAttribute="top" secondItem="LPT-mk-dwR" secondAttribute="top" id="mO7-t7-CUH"/>
+                        <constraint firstItem="vEq-u6-2fM" firstAttribute="leading" secondItem="sQk-TP-Tip" secondAttribute="leading" constant="5" id="yi5-Mp-cgW"/>
+                    </constraints>
+                </customView>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="d6D-LE-9vx" secondAttribute="trailing" id="3At-Ew-urx"/>
+                <constraint firstItem="d6D-LE-9vx" firstAttribute="bottom" secondItem="sQk-TP-Tip" secondAttribute="bottom" id="bbM-rd-vZU"/>
+                <constraint firstItem="d6D-LE-9vx" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="dsV-ac-49i"/>
+                <constraint firstItem="sQk-TP-Tip" firstAttribute="leading" secondItem="d6D-LE-9vx" secondAttribute="leading" id="fVq-Qn-n4I"/>
+                <constraint firstItem="sQk-TP-Tip" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="iKq-aj-TdE"/>
+                <constraint firstAttribute="bottom" secondItem="d6D-LE-9vx" secondAttribute="bottom" id="s2i-oY-hMo"/>
+                <constraint firstItem="d6D-LE-9vx" firstAttribute="trailing" secondItem="sQk-TP-Tip" secondAttribute="trailing" id="sFJ-Gf-m13"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="164"/>
+        </customView>
+        <collectionViewItem id="Jn9-IE-Y2w" customClass="BrowserItem" customModule="SplitBrowser" customModuleProvider="target">
+            <connections>
+                <outlet property="progressIndicator" destination="LPT-mk-dwR" id="the-0B-xWD"/>
+                <outlet property="statusBar" destination="sQk-TP-Tip" id="kGG-Il-nlF"/>
+                <outlet property="textField" destination="vEq-u6-2fM" id="Y12-dt-Pa2"/>
+                <outlet property="view" destination="c22-O7-iKe" id="bm4-ln-bzv"/>
+                <outlet property="webView" destination="d6D-LE-9vx" id="8CN-Q8-Xtw"/>
+            </connections>
+        </collectionViewItem>
+    </objects>
+</document>
+
