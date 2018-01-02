@@ -319,6 +319,7 @@ class SettingViewController: NSViewController, NSCollectionViewDelegate, NSColle
         } catch let err {
             SettingViewController.showFormValidationErrorDialog(string: err.localizedDescription)
         }
+        self.loadUrl()
     }
 
     // 分割数変更ボタンのクリック時に呼ばれる関数
