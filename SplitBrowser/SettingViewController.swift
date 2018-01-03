@@ -317,7 +317,7 @@ class SettingViewController: NSViewController, NSCollectionViewDelegate, NSColle
     @IBAction func clickedChangeSizeButton(_ sender: NSButton) {
         self.preset.row = self.rowForm.formValue
         self.preset.col = self.colForm.formValue
-        self.loadFormValues()
+        self.reloadViewCollection()
     }
 
     // プリセット管理ボタンのクリック時に呼ばれる関数
@@ -330,7 +330,7 @@ class SettingViewController: NSViewController, NSCollectionViewDelegate, NSColle
             self.changePreset(instance: Preset()) // 標準値を読み込み
             break
         case .duplicate:
-            var cloneName = self.preset.name // 複製名
+            var cloneName = self.nameForm.stringValue // 複製名
             while true { // 使われていない名前が見つかるまで繰り返し
                 cloneName = PresetManager.getCloneName(original: cloneName)
                 if self.userPresets![cloneName] == nil {
@@ -389,7 +389,8 @@ class SettingViewController: NSViewController, NSCollectionViewDelegate, NSColle
         // 一時的にプリセットの変更を保持する
         do {
             // 現在の状態をプリセットに書き込む
-            try self.storeFormValues(exceptName: !self.preset.temporary) // 現在の状態をプリセットに書き込む
+            // 保存済みプリセットの場合「保存」ボタン押下時以外は名前を変更しない
+            try self.storeFormValues(exceptName: !self.preset.temporary)
         } catch let err {
             SettingViewController.showFormValidationErrorDialog(string: err.localizedDescription)
             return
