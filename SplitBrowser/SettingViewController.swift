@@ -160,12 +160,14 @@ class SettingViewController: NSViewController, NSCollectionViewDelegate, NSColle
     }
 
     // フォームの値をプリセットに書き込む関数
-    private func storeFormValues() throws {
+    private func storeFormValues(exceptName: Bool = false) throws {
         guard let currentPreset = self.preset else {
             return
         }
-        
-        currentPreset.name = self.nameForm.stringValue
+
+        if !exceptName {
+            currentPreset.name = self.nameForm.stringValue
+        }
         try self.storeUrl()
     }
 
@@ -175,7 +177,7 @@ class SettingViewController: NSViewController, NSCollectionViewDelegate, NSColle
         self.loadUrl()
     }
 
-    // 与えられたキーでプリセットを保存できるかチェックする関数
+    // 与えられたキーでプリセットを保存できるかチェックして登録する関数
     private func assignPreset(key: String, overwrite: Bool = false) throws {
         if !overwrite { // 新規追加時
             // 保存上限に達したとき追加不可
@@ -188,13 +190,15 @@ class SettingViewController: NSViewController, NSCollectionViewDelegate, NSColle
         guard self.userPresets![key] == nil && key != PresetManager.unsetTitle else {
             throw NSError(domain: "プリセット名 : \(key) はすでに使用されています", code: -1, userInfo: nil)
         }
+
+        self.preset.name = key
     }
 
     // フォームの値から新しいプリセットを登録する関数
     private func storeUserPresets(duplicate: Bool = false) throws {
-        try self.storeFormValues() // フォームの値をプリセットに書き込み
+        try self.storeFormValues(exceptName: true) // フォームの値をプリセットに書き込み
 
-        let key = self.preset.name // 現在のキー (プリセット名)
+        let key = self.nameForm.stringValue // 現在のキー (プリセット名)
         if self.preset.temporary || duplicate { // 現在のプリセットが一時的なもののとき または 複製時
             try self.assignPreset(key: key) // キーが利用可能かどうかの確認
             if duplicate { // 複製時は現在のプリセットの複製を作成
@@ -338,7 +342,6 @@ class SettingViewController: NSViewController, NSCollectionViewDelegate, NSColle
             do {
                 try self.storeUserPresets(duplicate: true) // 現在のプリセットを保存
             } catch let err {
-                self.nameForm.stringValue = self.preset.name // 保存失敗時に変更したキーを元に戻す
                 SettingViewController.showFormValidationErrorDialog(string: err.localizedDescription)
                 return
             }
@@ -385,13 +388,11 @@ class SettingViewController: NSViewController, NSCollectionViewDelegate, NSColle
     @IBAction func clickedOk(_ sender: NSButton) {
         // 一時的にプリセットの変更を保持する
         do {
-            try self.storeFormValues() // 現在の状態をプリセットに書き込む
+            // 現在の状態をプリセットに書き込む
+            try self.storeFormValues(exceptName: !self.preset.temporary) // 現在の状態をプリセットに書き込む
         } catch let err {
             SettingViewController.showFormValidationErrorDialog(string: err.localizedDescription)
             return
-        }
-        if !self.preset.temporary { // 保存済みプリセットの場合
-            self.preset.name = self.savedPreset.name // 名前は変更しない (名前の変更は保存時にのみ許す)
         }
         PresetManager.storeCurrentPreset(instance: self.preset)
 
