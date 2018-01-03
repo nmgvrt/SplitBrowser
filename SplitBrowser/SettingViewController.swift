@@ -94,9 +94,7 @@ class SettingViewController: NSViewController, NSCollectionViewDelegate, NSColle
 
     // 現在のプリセットの値を画面に反映させる関数
     private func loadFormValues() {
-        guard let currentPreset = self.preset else {
-            return
-        }
+        let currentPreset: Preset = self.preset
 
         // プリセットからフォームの値を更新
         self.nameForm.stringValue = currentPreset.name
@@ -177,37 +175,28 @@ class SettingViewController: NSViewController, NSCollectionViewDelegate, NSColle
         self.loadUrl()
     }
 
-    // 与えられたキーでプリセットを登録できるかどうか判定する関数
-    private func canStorePreset(forKey key: String) -> Bool {
-        // 保存上限に達したとき追加不可
-        guard self.userPresets!.count < PresetManager.maxPreset else {
-            showErrorDialog(withTitle: "保存時エラー", message: "プリセット保存上限数は \(PresetManager.maxPreset) 件です")
-            return false
+    // 与えられたキーでプリセットを保存できるかチェックする関数
+    private func assignPreset(key: String, overwrite: Bool = false) throws {
+        if !overwrite { // 新規追加時
+            // 保存上限に達したとき追加不可
+            guard self.userPresets!.count < PresetManager.maxPreset else {
+                throw NSError(domain: "プリセット保存上限数は \(PresetManager.maxPreset) 件です", code: -1, userInfo: nil)
+            }
         }
 
         // すでにキーが使用されているとき追加不可
         guard self.userPresets![key] == nil && key != PresetManager.unsetTitle else {
-            showErrorDialog(withTitle: "保存時エラー", message: "プリセット名 : \(key) はすでに使用されています")
-            return false
+            throw NSError(domain: "プリセット名 : \(key) はすでに使用されています", code: -1, userInfo: nil)
         }
-        
-        return true
     }
 
     // フォームの値から新しいプリセットを登録する関数
-    private func storeUserPresets(duplicate: Bool = false) {
-        do {
-            try self.storeFormValues()
-        } catch let err {
-            SettingViewController.showFormValidationErrorDialog(string: err.localizedDescription)
-            return
-        }
+    private func storeUserPresets(duplicate: Bool = false) throws {
+        try self.storeFormValues() // フォームの値をプリセットに書き込み
 
         let key = self.preset.name // 現在のキー (プリセット名)
         if self.preset.temporary || duplicate { // 現在のプリセットが一時的なもののとき または 複製時
-            if !canStorePreset(forKey: key) { // 現在のキーで保存できないとき終了
-                return
-            }
+            try self.assignPreset(key: key) // キーが利用可能かどうかの確認
             if duplicate { // 複製時は現在のプリセットの複製を作成
                 let data = NSKeyedArchiver.archivedData(withRootObject: self.preset!)
                 self.preset = NSKeyedUnarchiver.unarchiveObject(with: data) as! Preset
@@ -216,9 +205,7 @@ class SettingViewController: NSViewController, NSCollectionViewDelegate, NSColle
         } else { // 上書き保存時
             let previousKey = self.savedPreset.name // 変更前のキー (プリセット名)
             if previousKey != key { // プリセット名が変更されたとき
-                if !canStorePreset(forKey: key) { // 新しいキーで保存できないとき終了
-                    return
-                }
+                try self.assignPreset(key: key, overwrite: true) // 新しいキーで保存できないとき例外発生
                 self.userPresets.removeValue(forKey: previousKey) // ユーザ定義プリセットから変更前のキーを削除
             }
         }
@@ -316,10 +303,10 @@ class SettingViewController: NSViewController, NSCollectionViewDelegate, NSColle
     override func controlTextDidEndEditing(_ obj: Notification) {
         do {
             try self.storeUrl()
+            self.loadUrl()
         } catch let err {
             SettingViewController.showFormValidationErrorDialog(string: err.localizedDescription)
         }
-        self.loadUrl()
     }
 
     // 分割数変更ボタンのクリック時に呼ばれる関数
@@ -348,10 +335,21 @@ class SettingViewController: NSViewController, NSCollectionViewDelegate, NSColle
             }
 
             self.nameForm.stringValue = cloneName // プリセット名を更新
-            self.storeUserPresets(duplicate: true) // 現在のプリセットを保存
+            do {
+                try self.storeUserPresets(duplicate: true) // 現在のプリセットを保存
+            } catch let err {
+                self.nameForm.stringValue = self.preset.name // 保存失敗時に変更したキーを元に戻す
+                SettingViewController.showFormValidationErrorDialog(string: err.localizedDescription)
+                return
+            }
             break
         case .save:
-            self.storeUserPresets() // 現在のプリセットを保存
+            do {
+                try self.storeUserPresets(duplicate: true) // 現在のプリセットを保存
+            } catch let err {
+                SettingViewController.showFormValidationErrorDialog(string: err.localizedDescription)
+                return
+            }
             break
         }
 
