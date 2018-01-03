@@ -345,7 +345,7 @@ class SettingViewController: NSViewController, NSCollectionViewDelegate, NSColle
             break
         case .save:
             do {
-                try self.storeUserPresets(duplicate: true) // 現在のプリセットを保存
+                try self.storeUserPresets() // 現在のプリセットを保存
             } catch let err {
                 SettingViewController.showFormValidationErrorDialog(string: err.localizedDescription)
                 return
