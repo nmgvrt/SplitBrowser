@@ -9,7 +9,7 @@
 import Cocoa
 import WebKit
 
-class BrowserItem: NSCollectionViewItem, WKNavigationDelegate {
+class BrowserItem: NSCollectionViewItem, WKNavigationDelegate, WKUIDelegate {
     @IBOutlet weak var statusBar: NSView!
     @IBOutlet weak var progressIndicator: NSProgressIndicator!
     @IBOutlet weak var webView: WKWebView!
@@ -29,37 +29,38 @@ class BrowserItem: NSCollectionViewItem, WKNavigationDelegate {
         self.statusBar.wantsLayer = true
         self.statusBar.layer?.backgroundColor = NSColor(calibratedRed: 0, green: 0, blue: 0, alpha: 0.7).cgColor
         self.webView.navigationDelegate = self
+        self.webView.uiDelegate = self
         self.progressIndicator.usesThreadedAnimation = false
     }
 
     // URL からのコンテンツの読み込み
     func load(url: URL) {
         if url.isFileURL {
-            self.webView!.loadFileURL(url, allowingReadAccessTo: url)
+            self.webView.loadFileURL(url, allowingReadAccessTo: url)
         } else {
-            self.webView?.load(URLRequest(url: url))
+            self.webView.load(URLRequest(url: url))
         }
     }
 
     // 外観の設定 (読み込み中)
     private func startLoading(withMessage message: String) {
         self.label = message
-        self.statusBar?.isHidden = false
-        self.webView!.isHidden = false
+        self.statusBar.isHidden = false
+        self.webView.isHidden = false
         self.progressIndicator?.startAnimation(nil)
     }
 
     // 外観の設定 (エラー発生)
     private func showError(withMessage message: String) {
         self.startLoading(withMessage: message)
-        self.progressIndicator?.stopAnimation(nil)
-        self.webView!.isHidden = true
+        self.progressIndicator.stopAnimation(nil)
+        self.webView.isHidden = true
     }
 
     // 外観の設定 (読み込み完了)
     private func stopLoading() {
-        self.statusBar?.isHidden = true
-        self.progressIndicator?.stopAnimation(nil)
+        self.statusBar.isHidden = true
+        self.progressIndicator.stopAnimation(nil)
     }
 
     // 読み込み開始時に呼ばれる関数
@@ -85,5 +86,18 @@ class BrowserItem: NSCollectionViewItem, WKNavigationDelegate {
     // 読み込み完了時に呼ばれる関数
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         self.stopLoading()
+    }
+
+    // 新規ウィンドウの作成時に呼ばれる関数
+    // target="_blank" への対応
+    func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+        if let url = navigationAction.request.url {
+            guard let targetFrame = navigationAction.targetFrame, targetFrame.isMainFrame else {
+                webView.load(URLRequest(url: url))
+                return nil
+            }
+        }
+
+        return nil
     }
 }
